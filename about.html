@@ -1,68 +1,134 @@
-<!-- FILE: about.html -->
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="menu.html">Menu</a>
-<a href="contact.html">Contact</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Chill Coffee</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Page Load Animation */
+  @keyframes pageFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+  body { animation: pageFadeIn 1s ease-in-out; }
+
+  /* Dropdown Animation */
+  .dropdown-menu { transform: translateY(10px); opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+  .group:hover .dropdown-menu { transform: translateY(0px); opacity: 1; pointer-events: auto; }
+
+  /* Card hover effect (optional) */
+  .card-animate:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s ease; }
+</style>
+</head>
+<body class="min-h-screen bg-[#f6f2e9] text-[#4b3f33] font-sans">
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-sm px-6 py-4 flex items-center justify-start">
+  <!-- Brand -->
+  <h1 class="text-white text-3xl font-bold mr-[7cm]">Sweet House</h1>
+
+  <!-- Hamburger Button (Mobile) -->
+  <button id="burgerBtn" class="text-white md:hidden ml-auto text-3xl">&#9776;</button>
+
+  <!-- Desktop Menu -->
+  <ul id="navMenu" class="hidden md:flex text-white font-semibold text-lg space-x-12">
+    <li class="group relative cursor-pointer">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="dropdown-menu absolute left-0 mt-2 w-[600px] bg-black/50 backdrop-blur-md rounded-xl p-6 text-white shadow-lg grid grid-cols-2 gap-6">
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Welcome Page</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Gallery</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Offers</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Store Location</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">New Updates</p>
+      </div>
+    </li>
+
+    <li class="group relative cursor-pointer">
+      <a href="about.html" class="nav-link active">About</a>
+      <div class="dropdown-menu absolute left-0 mt-2 w-[600px] bg-black/50 backdrop-blur-md rounded-xl p-6 text-white shadow-lg grid grid-cols-2 gap-6">
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Our Story</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Founder</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Values</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Team</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">History</p>
+      </div>
+    </li>
+
+    <li class="group relative cursor-pointer">
+      <a href="contact.html" class="nav-link">Contact</a>
+      <div class="dropdown-menu absolute left-0 mt-2 w-[400px] bg-black/50 backdrop-blur-md rounded-xl p-6 text-white shadow-lg grid grid-cols-2 gap-6">
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Email Us</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">WhatsApp</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Instagram</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">Support</p>
+        <p class="py-1 hover:text-gray-300 cursor-pointer">FAQ</p>
+      </div>
+    </li>
+  </ul>
 </nav>
-</div>
-</header>
 
+<!-- Script untuk ubah warna link aktif -->
+<script>
+  const currentPage = window.location.pathname.split("/").pop(); // ambil nama file
+  document.querySelectorAll(".nav-link").forEach(link => {
+    if(link.getAttribute("href") === currentPage){
+      link.classList.add("text-[#4b3f33]"); // coklat
+    }
+  });
 
-<main class="max-w-5xl mx-auto px-6 py-12">
-<section class="grid md:grid-cols-2 gap-8 items-center">
-<img src="https://images.unsplash.com/photo-1523364724857-1adf7f1e1f2d?q=80&auto=format&fit=crop&w=800&h=600&crop=entropy" class="rounded-xl shadow">
-<div>
-<h1 class="text-3xl font-serif text-[color:var(--coffee-dark)]">Our Story</h1>
-<p class="mt-4 text-[color:var(--coffee-mid)] leading-relaxed">Founded in 2017, CoffeeBliss started as a small roastery with a simple belief: great coffee brings people together. We partner with sustainable farms, roast carefully, and brew with attention to detail. Our vintage interior and relaxed vibe are designed for conversations, study sessions, and cozy afternoons.</p>
-<ul class="mt-4 space-y-2 text-sm text-[color:var(--coffee-mid)]">
-<li>• Direct trade partners</li>
-<li>• Small batch roasting</li>
-<li>• Community events & workshops</li>
-</ul>
+  // Mobile Menu toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed top-0 left-0 w-full h-screen bg-black/80 z-40 flex flex-col items-center justify-center gap-8 text-white text-2xl">
+  <a href="index.html" class="hover:text-gray-300">Home</a>
+  <a href="about.html" class="hover:text-gray-300 font-bold">About</a>
+  <a href="#" class="hover:text-gray-300">Contact</a>
 </div>
+
+<!-- Hero Section -->
+<section class="pt-24 py-16 container mx-auto px-6">
+  <h1 class="text-4xl md:text-5xl font-bold mb-6">About Chill Coffee</h1>
+  <p class="text-lg md:text-xl text-[#4b3f33] max-w-3xl">
+    Chill Coffee is a cozy café dedicated to bringing you premium coffee experiences.
+    From carefully sourced beans to artful brewing methods, we ensure every cup
+    delights your senses. Our team of passionate baristas strives to create not
+    only great coffee but also a welcoming environment where every visit feels special.
+  </p>
+
+  <h2 class="text-2xl font-semibold mt-10 mb-4">Our Story</h2>
+  <p class="text-[#4b3f33]">Founded in 2020, Chill Coffee began as a small dream to craft the perfect cup of coffee in a warm and inviting atmosphere...</p>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-4">Our Team</h2>
+  <p class="text-[#4b3f33]">Our team consists of experienced baristas, coffee enthusiasts, and friendly staff committed to making your experience memorable...</p>
 </section>
 
-
-<section class="mt-12">
-<h2 class="text-2xl font-semibold">Meet the Team</h2>
-<div class="mt-6 grid sm:grid-cols-2 gap-6">
-<div class="bg-white p-4 rounded-xl shadow flex gap-4 items-center">
-<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&auto=format&fit=crop&w=80&h=80&crop=faces" class="w-16 h-16 rounded-full object-cover">
-<div>
-<h4 class="font-semibold">Alya — Head Barista</h4>
-<p class="text-sm text-[color:var(--coffee-mid)]">Latte art specialist & brewing enthusiast.</p>
-</div>
-</div>
-
-
-<div class="bg-white p-4 rounded-xl shadow flex gap-4 items-center">
-<img src="https://images.unsplash.com/photo-1541233349642-6e425fe6190e?q=80&auto=format&fit=crop&w=80&h=80&crop=faces" class="w-16 h-16 rounded-full object-cover">
-<div>
-<h4 class="font-semibold">Budi — Roaster</h4>
-<p class="text-sm text-[color:var(--coffee-mid)]">Roasts the beans to highlight origin flavors.</p>
-</div>
-</div>
-</div>
-</section>
-</main>
-
-
-<footer class="bg-[color:var(--coffee-dark)] text-white mt-12">
-<div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6">
-<div>
-<h4 class="font-bold text-lg">CoffeeBliss</h4>
-<p class="text-sm mt-2 text-[color:var(--coffee-light)]/90">Vintage cafe — great coffee, warm place to stay awhile.</p>
-</div>
-<div>
-<h5 class="font-semibold">Opening Hours</h5>
-<p class="text-sm mt-2">Mon - Fri: 08:00 - 20:00<br>Sat - Sun: 07:30 - 22:00</p>
-</div>
-<div>
-<h5 class="font-semibold">Contact</h5>
-<p class="text-sm mt-2">123 Vintage St, CoffeeCity<br>+62 812-3456-7890</p>
-</div>
-</div>
-<div class="border-t border-white/10 py-4 text-center text-sm">© 2025 CoffeeBliss — All rights reserved</div>
+<!-- Footer -->
+<footer class="bg-[#e8dfd0] text-center py-6 mt-10">
+  <p class="text-lg">© 2025 Chill Coffee. All Rights Reserved.</p>
 </footer>
+
+<!-- Scripts -->
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Smooth Scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
 </body>
 </html>
